@@ -1,0 +1,45 @@
+# Sobe o sistema inteiro com um comando: banco, API e front.
+# Front em http://localhost:8080 e Swagger em http://localhost:5080/swagger.
+
+services:
+  banco:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: labdesk
+      POSTGRES_PASSWORD: labdesk
+      POSTGRES_DB: labdesk
+    volumes:
+      - dados-do-banco:/var/lib/postgresql/data
+    healthcheck:
+      # A API cria o schema na subida, entao so pode iniciar com o banco pronto.
+      test: ["CMD-SHELL", "pg_isready -U labdesk"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ./backend
+    depends_on:
+      banco:
+        condition: service_healthy
+    environment:
+      Banco__Provedor: Postgres
+      Banco__DadosDeDemonstracao: "true"
+      ConnectionStrings__Padrao: "Host=banco;Port=5432;Database=labdesk;Username=labdesk;Password=labdesk"
+      Cors__Origens__0: "http://localhost:8080"
+    ports:
+      - "5080:8080"
+
+  front:
+    build:
+      context: ./frontend
+      args:
+        # O nginx do container repassa /api para a API, mantendo a mesma origem.
+        VITE_API_URL: /api
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+
+volumes:
+  dados-do-banco:
