@@ -1,0 +1,590 @@
+/* CSS proprio, sem framework: a interface e pequena e o enunciado pedia funcional,
+   nao polida. Evitar a dependencia deixa o projeto mais rapido de subir e de ler. */
+
+:root {
+  --fundo: #f4f6f8;
+  --superficie: #ffffff;
+  --borda: #dde2e8;
+  --texto: #1f2933;
+  --texto-fraco: #6b7280;
+  --primaria: #0f766e;
+  --primaria-escura: #0b5d57;
+  --alerta: #b42318;
+  --alerta-fundo: #fdeceb;
+  --ok: #1d7a45;
+  --ok-fundo: #e7f5ec;
+  --andamento: #1f5fa8;
+  --andamento-fundo: #e8f0fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--texto);
+  background: var(--fundo);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Layout ---------- */
+
+.topo {
+  background: var(--primaria);
+  color: #fff;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 56px;
+}
+
+.topo__marca {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+}
+
+.topo__menu {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.topo__link {
+  padding: 8px 14px;
+  border-radius: 6px;
+  opacity: 0.85;
+}
+
+.topo__link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.topo__link--ativo {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.topo__responsavel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.topo__responsavel input {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  min-width: 190px;
+  font-size: 13px;
+}
+
+.conteudo {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+}
+
+.cabecalho-pagina {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.cabecalho-pagina h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.subtitulo {
+  color: var(--texto-fraco);
+  margin: 0 0 20px;
+}
+
+/* ---------- Blocos ---------- */
+
+.cartao {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+
+.cartao h2 {
+  font-size: 15px;
+  margin: 0 0 14px;
+}
+
+.grade {
+  display: grid;
+  gap: 16px;
+}
+
+.grade--dois {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 860px) {
+  .grade--dois {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Formulario ---------- */
+
+.campo {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.campo > span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+input[type='text'],
+input[type='date'],
+input[type='search'],
+select,
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.linha-opcao {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.linha-opcao input {
+  margin-top: 3px;
+}
+
+.dica {
+  color: var(--texto-fraco);
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+/* ---------- Botoes ---------- */
+
+button {
+  font: inherit;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  cursor: pointer;
+  background: var(--primaria);
+  color: #fff;
+  font-weight: 600;
+}
+
+button:hover:not(:disabled) {
+  background: var(--primaria-escura);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.secundario {
+  background: #fff;
+  color: var(--texto);
+  border-color: var(--borda);
+}
+
+button.secundario:hover:not(:disabled) {
+  background: #f0f2f5;
+}
+
+button.perigo {
+  background: var(--alerta);
+}
+
+button.perigo:hover:not(:disabled) {
+  background: #8f1c12;
+}
+
+button.pequeno {
+  padding: 5px 10px;
+  font-size: 13px;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Tabela ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--texto-fraco);
+  padding: 0 10px 8px;
+  border-bottom: 1px solid var(--borda);
+}
+
+td {
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--borda);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.linha-prioritaria td {
+  background: #fffaf0;
+}
+
+/* ---------- Etiquetas ---------- */
+
+.etiqueta {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.etiqueta--ok {
+  background: var(--ok-fundo);
+  color: var(--ok);
+}
+
+.etiqueta--alerta {
+  background: var(--alerta-fundo);
+  color: var(--alerta);
+}
+
+.etiqueta--andamento {
+  background: var(--andamento-fundo);
+  color: var(--andamento);
+}
+
+.etiqueta--neutra {
+  background: #eef0f3;
+  color: var(--texto-fraco);
+}
+
+.tampa {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.tampa__bolinha {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+/* ---------- Avisos ---------- */
+
+.aviso {
+  border-radius: 8px;
+  padding: 11px 14px;
+  margin-bottom: 16px;
+  border: 1px solid;
+}
+
+.aviso--erro {
+  background: var(--alerta-fundo);
+  border-color: #f3c1bd;
+  color: var(--alerta);
+}
+
+.aviso--ok {
+  background: var(--ok-fundo);
+  border-color: #bfe3cd;
+  color: var(--ok);
+}
+
+.aviso--atencao {
+  background: #fff8e6;
+  border-color: #f2dfae;
+  color: #8a6100;
+}
+
+.vazio {
+  color: var(--texto-fraco);
+  padding: 26px 0;
+  text-align: center;
+}
+
+/* ---------- Indicadores ---------- */
+
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.indicador {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.indicador__valor {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.indicador__rotulo {
+  color: var(--texto-fraco);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* ---------- Diversos ---------- */
+
+.lista-limpa {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-limpa li {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--borda);
+}
+
+.lista-limpa li:last-child {
+  border-bottom: none;
+}
+
+.fraco {
+  color: var(--texto-fraco);
+}
+
+.mono {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+
+.codigo-amostra {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ---------- Validacao de formulario ---------- */
+
+.obrigatorio {
+  color: var(--alerta);
+  font-weight: 700;
+}
+
+.campo--invalido {
+  border-color: var(--alerta);
+}
+
+.erro-do-campo {
+  display: block;
+  color: var(--alerta);
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Recortes da fila. Filtrar e diferente de ordenar: a ordem da fila e regra de
+   atendimento e nao pode ser trocada, mas escolher o que aparece e do operador. */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+button.filtro {
+  background: var(--superficie);
+  color: var(--texto-fraco);
+  border-color: var(--borda);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-weight: 500;
+}
+
+button.filtro:hover:not(:disabled) {
+  background: #f0f2f5;
+}
+
+button.filtro--ativo {
+  background: var(--primaria);
+  border-color: var(--primaria);
+  color: #fff;
+  font-weight: 600;
+}
+
+button.filtro--ativo:hover:not(:disabled) {
+  background: var(--primaria-escura);
+}
+
+/* ---------- Check-in em etapas ---------- */
+
+/* O check-in tem dependencia real entre as etapas: sem paciente nao ha pedido, e o
+   preparo so pode ser conferido depois de saber quais exames foram pedidos. Uma etapa
+   por vez, mas com as anteriores sempre clicaveis. */
+.passos {
+  max-width: 760px;
+}
+
+.etapa {
+  padding: 0;
+}
+
+.etapa__cabecalho {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  color: var(--texto);
+  padding: 14px 20px;
+}
+
+.etapa__cabecalho:hover:not(:disabled) {
+  background: #f0f2f5;
+}
+
+.etapa__cabecalho:disabled {
+  opacity: 0.55;
+}
+
+.etapa__titulo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.etapa__numero {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--borda);
+  color: var(--texto-fraco);
+  font-size: 12px;
+}
+
+.etapa--ativa .etapa__numero {
+  background: var(--primaria);
+  color: #fff;
+}
+
+/* O nome do paciente fica aqui quando a etapa 1 esta recolhida: o operador precisa
+   saber para quem esta montando o pedido nas etapas seguintes. */
+.etapa__resumo {
+  color: var(--texto-fraco);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.etapa__corpo {
+  padding: 4px 20px 18px;
+  border-top: 1px solid var(--borda);
+}
+
+.etapa__navegacao {
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+/* ---------- Campo de data com calendario ---------- */
+
+/* O campo digitavel continua sendo texto com mascara dia/mes/ano. O seletor nativo
+   fica invisivel atras do botao, so para ancorar o calendario do navegador ali. */
+.campo-data {
+  position: relative;
+  display: block;
+  /* `.campo > span` estiliza o rotulo em 13px e negrito. O campo em si nao herda isso,
+     senao ele ficaria menor e mais escuro que os outros do formulario. */
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.campo-data input[type='text'] {
+  padding-right: 42px;
+}
+
+.campo-data__botao {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  width: 38px;
+  padding: 0;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  background: none;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.campo-data__botao:hover:not(:disabled) {
+  background: #f0f2f5;
+}
+
+.campo-data__seletor {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: none;
+  opacity: 0;
+  pointer-events: none;
+}
