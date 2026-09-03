@@ -5,7 +5,7 @@ da chegada do paciente até a amostra ser conferida e liberada para o setor téc
 
 Backend em **C# / .NET 10** e frontend em **Vue 3**.
 
-> **Demonstração:** _(link do front)_ · **API/Swagger:** _(link da API)_
+> **Demonstração:** https://desafio-tecnico-ocean-h.vercel.app · **API/Swagger:** https://desafio-tecnico-ocean-h-production.up.railway.app/swagger/index.html
 > A instância pública sobe com atendimentos de exemplo em vários pontos do fluxo.
 > Deploy era no-go no enunciado; subi uma instância só para facilitar a avaliação, sem
 > pipeline nem infraestrutura — detalhes em [`docs/04-deploy.md`](docs/04-deploy.md).
